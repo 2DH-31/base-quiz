@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>진수 변환 퀴즈 | 진법 마스터</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;color:#eaf0ff;background:#0b1020;font-synthesis:none}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 80% 5%,#23366c 0,transparent 48%),#0b1020}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}.app{max-width:1000px;margin:0 auto;padding:38px 18px 64px}.top{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:27px}.eyebrow{color:#8fa6db;font-size:13px;font-weight:700;letter-spacing:.13em}h1{font-size:clamp(28px,5vw,42px);letter-spacing:-.04em;margin:8px 0}p{color:#aebbd6;line-height:1.6;margin:0}.pill{border:1px solid #3a4e7d;border-radius:99px;padding:10px 14px;color:#b9caee;font-size:13px;white-space:nowrap}.layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(255px,1fr);gap:20px}.panel{background:#151e35;border:1px solid #293657;border-radius:22px;padding:26px;box-shadow:0 15px 30px #0509143d}.main-panel{min-height:480px}.row{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.muted{color:#a2b2d4;font-size:13px}.selector{background:#222f4d;border:1px solid #455574;color:white;padding:9px 12px;border-radius:10px}.question{margin:45px 0 32px;text-align:center}.question small{display:block;color:#a2b2d4;font-size:15px;margin-bottom:15px}.question strong{display:block;font-size:clamp(27px,4.5vw,41px);overflow-wrap:anywhere;line-height:1.45}.from{color:#6faeff}.arrow{color:#9eabc8;margin:0 10px}.to{color:#a18aff}.entry{width:100%;padding:17px;background:#0c1429;color:#fff;border:1px solid #405071;border-radius:14px;font-size:22px;text-align:center;text-transform:uppercase}.buttons{display:flex;gap:10px;margin-top:15px}.btn{border:0;border-radius:12px;padding:14px 18px;font-weight:750;background:#2b3b5d;color:#eaf0ff}.btn.primary{background:#537fff;color:#fff;flex:1}.btn:hover{filter:brightness(1.12)}.feedback{min-height:28px;margin:13px 0 0;color:#aebbd6;font-size:14px}.feedback.ok{color:#6ee7ae}.feedback.bad{color:#ffadad}.side{display:flex;flex-direction:column;gap:20px}.stat-number{font-size:34px;font-weight:800;margin:8px 0}.track{height:9px;background:#283653;border-radius:99px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,#5199ff,#9b86ff);transition:width .25s}.stat-line{display:flex;justify-content:space-between;margin:12px 0 7px;color:#c0cceb;font-size:14px}.tools{display:grid;gap:9px;margin-top:17px}.tool{display:flex;justify-content:space-between;text-align:left;align-items:center;width:100%;background:#202c48;color:#eaf0ff;border:1px solid #354664;border-radius:12px;padding:14px}.tool small{color:#9dabcb}.footer{margin-top:20px;text-align:center;color:#7d90b4;font-size:12px}.overlay{position:fixed;inset:0;background:#020617bd;display:none;align-items:center;justify-content:center;padding:15px;z-index:5}.overlay.open{display:flex}.dialog{width:min(660px,100%);background:#17213b;border:1px solid #384b75;border-radius:20px;padding:23px;max-height:90vh;overflow:auto}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:15px}.dialog h2{margin:0 0 18px;font-size:22px}.x{background:#30405d;border:0;color:white;border-radius:10px;padding:8px 13px}.output{margin-top:15px;background:#0b1326;padding:18px;white-space:pre-wrap;line-height:1.65;border:1px solid #2e3c5b;border-radius:12px;color:#dce5ff;overflow-wrap:anywhere}.formline{display:flex;gap:10px}.formline input{min-width:0;flex:1}.empty{color:#a1b1ce;padding:20px;text-align:center}.note{border-bottom:1px solid #33415f;padding:13px 0;color:#dce6fc;font-size:14px;overflow-wrap:anywhere}.note:last-child{border:0}.note small{display:block;margin-top:7px;color:#abb9d6}.notice{margin-top:10px;color:#99add5;font-size:12px}.danger{background:#4c3044}.chip{font-size:12px;background:#273b68;color:#c8d6fb;border-radius:99px;padding:5px 9px}@media(max-width:730px){.top{align-items:flex-start}.pill{display:none}.layout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr}.panel{padding:20px}.question{margin:34px 0 24px}}@media(max-width:480px){.side{grid-template-columns:1fr}.buttons{flex-direction:column}.formline{flex-direction:column}}
+
+.lb-list{margin-top:15px}.lb-row{display:grid;grid-template-columns:42px minmax(0,1fr) 78px 88px;gap:8px;align-items:center;padding:12px 8px;border-bottom:1px solid #33415f;color:#eaf0ff;font-size:14px}.lb-row span{overflow-wrap:anywhere}.lb-row.head{font-size:12px;color:#a2b2d4}.lb-top{color:#fde68a;font-weight:bold}.status{font-size:13px;color:#a2b2d4;margin-top:10px;line-height:1.5}.lb-form{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.lb-form input{flex:1;min-width:120px;background:#0c1429;color:white;border:1px solid #405071;border-radius:10px;padding:12px}.lb-form button:disabled{opacity:.45;cursor:not-allowed}.lb-note{font-size:12px;color:#a2b2d4;margin-top:10px}.lb-row .small{font-size:12px;color:#abb9d6}
+.modebar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:18px;padding:15px 18px;border:1px solid #293657;border-radius:15px;background:#151e35}.modebar label{font-weight:700;color:#cbd5e1}.modebar #restart{margin-left:auto;padding:10px 14px}.end-actions{margin-top:18px}.end-actions .btn{margin-right:8px}@media(max-width:480px){.modebar #restart{margin-left:0;width:100%}}
+</style></head>
+<body><main class="app"><header class="top"><div><div class="eyebrow">BINARY · OCTAL · DECIMAL · HEX</div><h1>🧠 진수 변환 퀴즈</h1><p>일반 10문제 퀴즈와 무한 연속 정답 도전에 도전해 보세요.</p></div><div class="pill">브라우저에서 바로 학습</div></header>
+<div class="modebar"><label for="mode">게임 모드</label><select class="selector" id="mode"><option value="ten">일반 퀴즈 · 10문제</option><option value="infinite">무한 도전 · 한 번 틀리면 종료</option></select><button class="btn" id="restart">새 도전 시작 ↻</button></div><div class="layout"><section class="panel main-panel"><div class="row"><span class="chip" id="question-number">문제 #1 / 10</span><label class="row muted" for="difficulty">난이도 <select class="selector" id="difficulty"><option value="쉬움">쉬움 · 1~31</option><option value="보통" selected>보통 · 1~255</option><option value="어려움">어려움 · 1~4095</option></select></label></div><div class="question"><small id="instruction">다음 숫자를 변환하세요</small><strong><span class="from" id="source-label"></span><span class="arrow">→</span><span class="to" id="target-label"></span></strong></div><label for="answer" class="muted">정답 입력</label><input id="answer" class="entry" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="변환한 숫자를 입력하세요" aria-describedby="feedback"><div class="buttons"><button class="btn primary" id="submit">정답 제출 ↵</button><button class="btn" id="next">문제 건너뛰기</button></div><div role="status" aria-live="polite" id="feedback" class="feedback">숫자 앞에 0을 붙여도 정답으로 인정됩니다.</div></section>
+<aside class="side"><section class="panel"><div class="muted">전체 정답률</div><div class="stat-number" id="accuracy">0.0%</div><div class="track"><div class="fill" id="overall-bar"></div></div><div class="stat-line"><span>맞힌 문제</span><b id="score">0 / 0</b></div><div class="stat-line"><span>오답 기록</span><b id="wrong-count">0개</b></div></section><section class="panel"><strong>학습 도구</strong><div class="tools"><button class="tool" data-modal="hint"><span>💡 힌트 변환기</span><small>풀이 보기 ›</small></button><button class="tool" data-modal="notes"><span>📒 오답 노트</span><small>복습하기 ›</small></button><button class="tool" data-modal="stats"><span>📊 정답률 통계</span><small>분석 보기 ›</small></button><button class="tool" data-modal="leaderboard"><span>🏆 무한 모드 순위표</span><small>최고 연속 정답 순위 ›</small></button></div></section></aside></div><div class="footer">개인 학습 기록은 이 브라우저에 저장되며, 온라인 순위표 점수는 별도 데이터베이스에 저장됩니다.</div></main>
+<div class="overlay" id="overlay"><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="dialog-head"><h2 id="modal-title"></h2><button class="x" id="close" aria-label="닫기">✕</button></div><div id="modal-body"></div></section></div>
+<script src="config.js"></script>
+<script>
+'use strict';
+const BASES={'2진수':2,'8진수':8,'10진수':10,'16진수':16};
+const LIMITS={'쉬움':31,'보통':255,'어려움':4095};
+const STORAGE='base-quiz-web-v1';
+const ROUND_SIZE=10;
+let round={answered:0,correct:0,level:null,mode:'ten',finished:false,submitted:false};
+const cfg=window.QUIZ_CONFIG||{};
+const onlineReady= /^https:\/\/[^/]+\.supabase\.co$/.test(cfg.url||'') && /^sb_publishable_/.test(cfg.key||'') && !(cfg.url||'').includes('YOUR_PROJECT_REF') && !(cfg.key||'').includes('YOUR_PUBLISHABLE_KEY');
+const $=id=>document.getElementById(id);
+function fresh(){return {score:0,total:0,stats:Object.fromEntries(Object.keys(LIMITS).map(x=>[x,{correct:0,total:0}])),wrong:[]};}
+function load(){try{const x=JSON.parse(localStorage.getItem(STORAGE));if(!x||!Number.isInteger(x.score)||!Number.isInteger(x.total)||!Array.isArray(x.wrong))return fresh();const clean=fresh();clean.score=x.score;clean.total=x.total;clean.wrong=x.wrong;for(const k of Object.keys(clean.stats)){if(x.stats?.[k])clean.stats[k]={correct:Number(x.stats[k].correct)||0,total:Number(x.stats[k].total)||0};}return clean;}catch{return fresh();}}
+let state=load(),q=null,number=0,previousFocus=null;
+function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state));}catch{}}
+function format(n,base){return n.toString(base).toUpperCase();}
+function randomInt(max){return Math.floor(Math.random()*max)+1;}
+function newQuestion(resultMessage=null,resultType=''){
+ if(round.finished)return;
+ const names=Object.keys(BASES),source=names[Math.floor(Math.random()*4)];let target;
+ do{target=names[Math.floor(Math.random()*4)];}while(target===source);
+ const level=round.level||$('difficulty').value,n=randomInt(LIMITS[level]);
+ q={n,source,target,level,sourceValue:format(n,BASES[source]),answer:format(n,BASES[target])};
+ $('source-label').textContent=`${source} [${q.sourceValue}]`;
+ $('target-label').textContent=target;
+ $('answer').value='';$('answer').disabled=false;
+ $('question-number').textContent=round.mode==='infinite'?`무한 도전 · 연속 ${round.correct}개 성공 · 문제 #${round.answered+1}`:`일반 도전 · 문제 #${round.answered+1} / ${ROUND_SIZE}`;
+ $('instruction').textContent=`${source}를 ${target}로 변환하세요`;
+ feedback(resultMessage||'숫자 앞에 0을 붙여도 정답으로 인정됩니다.',resultType);
+ $('answer').focus();
+}
+function parseAnswer(value,base){let s=value.trim().toUpperCase();if(base===2)s=s.replace(/^0B/,'');if(base===8)s=s.replace(/^0O/,'');if(base===16)s=s.replace(/^0X/,'');const valid=base===2?/^[01]+$/:base===8?/^[0-7]+$/:base===10?/^[0-9]+$/:/^[0-9A-F]+$/;if(!valid.test(s))return null;return parseInt(s,base);}
+function check(){
+ if(!q||round.finished)return;
+ const raw=$('answer').value.trim();if(!raw){feedback('정답을 입력해 주세요.','bad');return;}
+ const val=parseAnswer(raw,BASES[q.target]);if(val===null){feedback(`${q.target}에 사용할 수 있는 숫자를 입력해 주세요.`,'bad');return;}
+ round.level=q.level;round.answered++;state.total++;state.stats[q.level].total++;
+ if(val===q.n){round.correct++;state.score++;state.stats[q.level].correct++;}
+ else state.wrong.push({...q,userAnswer:raw.toUpperCase(),date:new Date().toLocaleString('ko-KR')});
+ save();renderStats();
+ if(round.mode==='infinite'){
+   if(val!==q.n)finishRound(`❌ 오답! 정답은 ${q.answer}입니다.`, 'bad');
+   else newQuestion('🎉 정답! 연속 기록이 1개 늘었습니다.','ok');
+ }else if(round.answered>=ROUND_SIZE){finishRound(val===q.n?'🎉 마지막 문제 정답!':`❌ 마지막 문제 오답. 정답은 ${q.answer}입니다.`,val===q.n?'ok':'bad');}
+ else newQuestion(val===q.n?'🎉 정답입니다! 다음 문제로 넘어갔어요.':`❌ 아쉬워요! 정답은 ${q.answer}입니다. 다음 문제로 넘어갔어요.`,val===q.n?'ok':'bad');
+}
+function feedback(text,type){$('feedback').textContent=text;$('feedback').className='feedback '+type;}
+function renderStats(){$('accuracy').textContent=(state.total?state.score/state.total*100:0).toFixed(1)+'%';$('overall-bar').style.width=(state.total?state.score/state.total*100:0)+'%';$('score').textContent=`${state.score} / ${state.total}`;$('wrong-count').textContent=`${state.wrong.length}개`;}
+function steps(n,base){if(n===0)return '0은 모든 진법에서 0입니다.';const lines=[];let value=n;while(value){const quotient=Math.floor(value/base),remainder=value%base;lines.push(`${value} ÷ ${base} = ${quotient} ... ${format(remainder,base)}`);value=quotient;}return lines.join('\n')+`\n나머지를 아래에서 위로 읽기: ${format(n,base)}`;}
+function el(tag,props={},text){const x=document.createElement(tag);for(const [k,v] of Object.entries(props)){if(k==='className')x.className=v;else x.setAttribute(k,v);}if(text!==undefined)x.textContent=text;return x;}
+function hintContent(parent){parent.append(el('p',{},'10진수 정수를 입력하면 각 진법 변환 결과와 나눗셈 풀이를 보여 줍니다.'));const line=el('div',{className:'formline'}),input=el('input',{className:'entry',placeholder:'예: 173',inputmode:'numeric','aria-label':'10진수 숫자'}),btn=el('button',{className:'btn primary'},'풀이 및 변환하기'),out=el('div',{className:'output'},'숫자를 입력해 주세요.');line.append(input,btn);parent.append(line,out);line.style.marginTop='15px';function run(){const str=input.value.trim();if(!/^\d+$/.test(str)||!Number.isSafeInteger(Number(str))) {out.textContent='⚠️ 0 이상의 올바른 정수를 입력해 주세요.';return;}const n=Number(str);let result='=== 변환 결과 ===\n'+Object.entries(BASES).map(([name,b])=>`${name}: ${format(n,b)}`).join('\n')+'\n\n=== 상세 풀이 과정 ===';for(const [name,b] of Object.entries(BASES)){if(b!==10)result+=`\n\n[${name}]\n${steps(n,b)}`;}out.textContent=result;}btn.addEventListener('click',run);input.addEventListener('keydown',e=>{if(e.key==='Enter')run();});input.focus();}
+function notesContent(parent){const count=el('p',{},`오답 ${state.wrong.length}개 · 이 브라우저에 자동 저장됩니다.`);parent.append(count);if(!state.wrong.length){parent.append(el('div',{className:'empty'},'아직 틀린 문제가 없습니다. 멋져요!'));return;}const list=el('div');for(const [i,item] of [...state.wrong].reverse().entries()){const note=el('div',{className:'note'});note.append(el('div',{},`${state.wrong.length-i}. [${item.level}] ${item.source} ${item.sourceValue} → ${item.target}`));note.append(el('small',{},`입력: ${item.userAnswer}  |  정답: ${item.answer}  |  ${item.date||''}`));list.append(note);}parent.append(list);}
+function statsContent(parent){parent.append(el('p',{},`전체 정답률: ${state.total?(state.score/state.total*100).toFixed(1):'0.0'}% (${state.score}/${state.total})`));for(const [level,data] of Object.entries(state.stats)){const percent=data.total?data.correct/data.total*100:0;const line=el('div',{className:'stat-line'});line.append(el('span',{},level),el('b',{},`${data.correct}/${data.total} · ${percent.toFixed(1)}%`));const track=el('div',{className:'track'}),fill=el('div',{className:'fill'});fill.style.width=percent+'%';track.append(fill);parent.append(line,track);}const reset=el('button',{className:'btn danger'},'학습 기록 초기화');reset.style.marginTop='25px';reset.addEventListener('click',()=>{if(!confirm('점수와 오답 노트를 모두 삭제할까요?'))return;state=fresh();save();renderStats();closeModal();startRound();});parent.append(reset);}
+
+function startRound(){
+ round={answered:0,correct:0,level:null,mode:$('mode').value,finished:false,submitted:false};
+ $('difficulty').disabled=false;$('submit').disabled=false;$('next').disabled=false;$('answer').disabled=false;
+ $('next').textContent=round.mode==='infinite'?'포기하기 (도전 종료)':'문제 건너뛰기';
+ newQuestion();
+}
+function finishRound(message,type){
+ round.finished=true;q=null;$('difficulty').disabled=true;$('submit').disabled=true;$('next').disabled=true;$('answer').disabled=true;$('answer').value='';
+ const infinite=round.mode==='infinite';
+ $('question-number').textContent=infinite?'무한 도전 종료':'10문제 도전 완료';
+ $('source-label').textContent=infinite?`연속 ${round.correct}문제 성공`:`${round.correct} / ${ROUND_SIZE} 정답`;
+ $('target-label').textContent='';$('instruction').textContent=infinite?'무한 도전 결과 · 온라인 순위 등록 가능':'일반 퀴즈 결과';
+ feedback(`${message} ${infinite?`최종 기록 ${round.correct}연속 정답 · 순위표에 등록하세요.`:`최종 ${round.correct}/${ROUND_SIZE}점.`}`,type);
+ if(infinite)openModal('leaderboard');
+}
+async function api(path,opts={}){if(!onlineReady)throw Error('온라인 데이터베이스 설정이 아직 완료되지 않았습니다. config.js를 설정하세요.');const response=await fetch(cfg.url+'/rest/v1/'+path,{...opts,headers:{apikey:cfg.key,...opts.headers}});if(!response.ok)throw Error('서버 응답 오류 ('+response.status+'). Supabase 설정과 RLS 정책을 확인하세요.');return response.status===204?null:response.json();}
+async function loadLeaderboard(box,level){
+ box.replaceChildren(el('p',{className:'status'},'무한 도전 순위를 불러오는 중...'));
+ try{
+  const rows=await api('infinite_scores?select=nickname,difficulty,score,created_at&difficulty=eq.'+encodeURIComponent(level)+'&order=score.desc,created_at.asc&limit=30');
+  box.replaceChildren();const head=el('div',{className:'lb-row head'});
+  for(const t of ['순위','닉네임','연속 정답','등록일'])head.append(el('span',{},t));box.append(head);
+  if(!rows.length){box.append(el('p',{className:'empty'},'아직 기록이 없어요. 첫 번째 기록을 남겨 보세요!'));return;}
+  rows.forEach((item,i)=>{const line=el('div',{className:'lb-row'});if(i<3)line.classList.add('lb-top');
+  const date=new Date(item.created_at);for(const t of [String(i+1),item.nickname,`${item.score}개`,Number.isNaN(date.getTime())?'':date.toLocaleDateString('ko-KR')])line.append(el('span',{},t));box.append(line);});
+ }catch(err){box.replaceChildren(el('p',{className:'status'},err.message));}
+}
+function leaderboardContent(parent){
+ parent.append(el('p',{},'🏆 무한 도전 전용 순위표입니다. 한 번 틀리면 종료되며, 연속 정답 수가 높은 순으로 정렬합니다. 동점은 먼저 등록한 사람이 앞섭니다.'));
+ const line=el('div',{className:'row'});line.style.marginTop='15px';line.append(el('strong',{},'순위표 난이도'));
+ const select=el('select',{className:'selector'});
+ Object.keys(LIMITS).forEach(level=>select.append(el('option',{value:level},level)));
+ select.value=round.level||$('difficulty').value;line.append(select);parent.append(line);
+ const list=el('div',{className:'lb-list'});parent.append(list);select.addEventListener('change',()=>loadLeaderboard(list,select.value));loadLeaderboard(list,select.value);
+ const form=el('div',{className:'lb-form'}),nick=el('input',{maxlength:'12',placeholder:'닉네임 (2~12자)','aria-label':'순위표 닉네임'}),submit=el('button',{className:'btn primary'},'무한 기록 등록'),status=el('p',{className:'status'});
+ form.append(nick,submit);parent.append(form,status);
+ const canSubmit=round.mode==='infinite'&&round.finished&&!round.submitted;
+ submit.disabled=!canSubmit;
+ status.textContent=round.mode!=='infinite'?'일반 10문제 모드는 순위표에 등록하지 않습니다. 무한 모드에 도전해 보세요.':!round.finished?'한 번 틀리거나 포기하여 도전이 종료되면 등록할 수 있어요.':round.submitted?'이번 도전 기록은 이미 등록했습니다.':`등록할 기록: ${round.level} · ${round.correct}연속 정답`;
+ submit.addEventListener('click',async()=>{
+  if(!canSubmit||round.submitted)return;
+  const name=nick.value.trim();if(!/^[가-힣a-zA-Z0-9 _-]{2,12}$/.test(name)){status.textContent='닉네임은 2~12자의 한글, 영문, 숫자, 공백, _, -만 가능합니다.';return;}
+  submit.disabled=true;status.textContent='기록 등록 중...';
+  try{await api('infinite_scores',{method:'POST',headers:{'Content-Type':'application/json',Prefer:'return=minimal'},body:JSON.stringify({nickname:name,difficulty:round.level,score:round.correct})});round.submitted=true;status.textContent='무한 도전 기록 등록 완료!';select.value=round.level;await loadLeaderboard(list,select.value);}
+  catch(err){submit.disabled=false;status.textContent=err.message;}
+ });
+ const actions=el('div',{className:'end-actions'}),again=el('button',{className:'btn'},'새 도전 시작 ↻');
+ again.addEventListener('click',()=>{closeModal();startRound();});actions.append(again);parent.append(actions);
+ parent.append(el('p',{className:'lb-note'},'공개 닉네임에 실명이나 연락처를 사용하지 마세요. 로그인과 서버 정답 검증이 없으므로 부정 기록을 완전히 방지할 수는 없습니다.'));
+}
+function openModal(type){previousFocus=document.activeElement;const names={hint:'💡 힌트 변환기 & 풀이',notes:'📒 오답 노트',stats:'📊 정답률 통계',leaderboard:'🏆 온라인 순위표'};$('modal-title').textContent=names[type];const body=$('modal-body');body.replaceChildren();$('overlay').classList.add('open');if(type==='hint')hintContent(body);else if(type==='notes')notesContent(body);else if(type==='stats')statsContent(body);else leaderboardContent(body);if(type!=='hint')$('close').focus();}
+function closeModal(){$('overlay').classList.remove('open');if(previousFocus)previousFocus.focus();}
+$('submit').addEventListener('click',check);
+$('answer').addEventListener('keydown',e=>{if(e.key==='Enter')check();});
+$('next').addEventListener('click',()=>{
+ if(round.finished||!q)return;
+ round.level=q.level;round.answered++;state.total++;state.stats[q.level].total++;
+ state.wrong.push({...q,userAnswer:'(건너뛰기 / 포기)',date:new Date().toLocaleString('ko-KR')});save();renderStats();
+ if(round.mode==='infinite')finishRound('도전을 포기했습니다.','bad');
+ else if(round.answered>=ROUND_SIZE)finishRound('건너뛴 문제는 오답 처리했어요.','bad');
+ else newQuestion('건너뛴 문제는 오답 처리했어요.','bad');
+});
+function changeSettings(id){
+ if(round.answered>0&&!round.finished){
+  if(!confirm('진행 중인 도전을 포기하고 새로운 모드/난이도로 시작할까요?')){
+    $('difficulty').value=round.level;$('mode').value=round.mode;return;
+  }
+ }
+ startRound();
+}
+$('difficulty').addEventListener('change',()=>changeSettings('difficulty'));
+$('mode').addEventListener('change',()=>changeSettings('mode'));
+$('restart').addEventListener('click',()=>{if(round.answered>0&&!round.finished&&!confirm('현재 도전을 포기하고 새로 시작할까요?'))return;startRound();});
+document.querySelectorAll('[data-modal]').forEach(b=>b.addEventListener('click',()=>{
+ if(b.dataset.modal==='hint'&&round.mode==='infinite'&&!round.finished){feedback('무한 도전 중에는 공정성을 위해 힌트 변환기를 사용할 수 없습니다.','bad');return;}
+ openModal(b.dataset.modal);
+}));
+$('close').addEventListener('click',closeModal);
+$('overlay').addEventListener('click',e=>{if(e.target===$('overlay'))closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('overlay').classList.contains('open'))closeModal();});
+renderStats();startRound();
+
+</script></body></html>
