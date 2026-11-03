@@ -92,7 +92,7 @@ async function loadLeaderboard(box,level){
   const rows=await api('infinite_scores?select=nickname,difficulty,score,created_at&difficulty=eq.'+encodeURIComponent(level)+'&order=score.desc,created_at.asc&limit=30');
   box.replaceChildren();const head=el('div',{className:'lb-row head'});
   for(const t of ['순위','닉네임','연속 정답','등록일'])head.append(el('span',{},t));box.append(head);
-  if(!rows.length){box.append(el('p',{className:'empty'},'아직 기록이 없어요. 첫 번째 기록을 남겨 보세요!'));return;}
+  if(!Array.isArray(rows)||!rows.length){box.append(el('p',{className:'empty'},'아직 기록이 없어요. 첫 번째 기록을 남겨 보세요!'));return;}
   rows.forEach((item,i)=>{const line=el('div',{className:'lb-row'});if(i<3)line.classList.add('lb-top');
   const date=new Date(item.created_at);for(const t of [String(i+1),item.nickname,`${item.score}개`,Number.isNaN(date.getTime())?'':date.toLocaleDateString('ko-KR')])line.append(el('span',{},t));box.append(line);});
  }catch(err){box.replaceChildren(el('p',{className:'status'},err.message));}
@@ -130,7 +130,7 @@ $('next').addEventListener('click',()=>{
  state.wrong.push({...q,userAnswer:'(건너뛰기 / 포기)',date:new Date().toLocaleString('ko-KR')});save();renderStats();
  if(round.mode==='infinite')finishRound('도전을 포기했습니다.','bad');
  else if(round.answered>=ROUND_SIZE)finishRound('건너뛴 문제는 오답 처리했어요.','bad');
- else newQuestion('건너뛴 문제는 오답 처리했어요.','bad');
+ else newQuestion('문제를 건너뛰었어요. 오답으로 기록됩니다.','bad');
 });
 function changeSettings(id){
  if(round.answered>0&&!round.finished){
